@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ecommerce-simple-backend"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.111",
+  "uvicorn[standard]>=0.30",
+  "pydantic>=2.7",
+  "SQLAlchemy>=2.0",
+  "psycopg2-binary>=2.9",
+  "python-dotenv>=1.0"
+]
+
+[tool.setuptools]
+packages = ["app"]
