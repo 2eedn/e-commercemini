@@ -1,33 +1,32 @@
-import { Routes, Route, Link } from 'react-router-dom'
-import ProductsPage from './pages/ProductsPage'
-import CheckoutPage from './pages/CheckoutPage'
-import OrdersPage from './pages/OrdersPage'
-import OrderDetailPage from './pages/OrderDetailPage'
-import './styles.css'
-import { useStore } from './store'
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import ProductsPage from "./pages/ProductsPage";
+import CheckoutPage from "./pages/CheckoutPage";
+import OrdersPage from "./pages/OrdersPage";
+import OrderDetailPage from "./pages/OrderDetailPage";
+import AddProductPage from "./pages/AddProductPage";
 
-export default function App(){
-  const { cart } = useStore()
-  const count = Object.values(cart).reduce((s,i)=> s+i.quantity, 0)
-
+function App() {
   return (
-    <div className="min-h-screen">
-      <nav className="border-b">
-        <div className="container mx-auto p-4 flex items-center justify-between">
-          <Link to="/" className="font-bold">E‑Com</Link>
-          <div className="flex gap-4">
-            <Link to="/">Produk</Link>
-            <Link to="/orders">Pesanan</Link>
-            <Link to="/checkout">Checkout ({count})</Link>
-          </div>
-        </div>
-      </nav>
-      <Routes>
-        <Route path="/" element={<ProductsPage/>}/>
-        <Route path="/checkout" element={<CheckoutPage/>}/>
-        <Route path="/orders" element={<OrdersPage/>}/>
-        <Route path="/orders/:id" element={<OrderDetailPage/>}/>
-      </Routes>
-    </div>
-  )
+    <Router>
+      <div className="p-4">
+        {/* Navbar sederhana */}
+        <nav className="mb-6 flex gap-4">
+          <Link to="/" className="text-blue-600 hover:underline">Produk</Link>
+          <Link to="/orders" className="text-blue-600 hover:underline">Pesanan</Link>
+          <Link to="/add-product" className="text-blue-600 hover:underline">Tambah Produk</Link>
+        </nav>
+
+        {/* Routing */}
+        <Routes>
+          <Route path="/" element={<ProductsPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/orders" element={<OrdersPage />} />
+          <Route path="/orders/:id" element={<OrderDetailPage />} />
+          <Route path="/add-product" element={<AddProductPage />} />
+        </Routes>
+      </div>
+    </Router>
+  );
 }
+
+export default App;
